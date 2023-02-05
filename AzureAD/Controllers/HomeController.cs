@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using System.Diagnostics;
 
 namespace AzureAD.Controllers
@@ -31,6 +32,7 @@ namespace AzureAD.Controllers
         public IActionResult SignIn() 
         {
             var scheme = OpenIdConnectDefaults.AuthenticationScheme;
+            var redirectUrl = Url.ActionContext.HttpContext.Request.Scheme + "://" + Url.ActionContext.HttpContext.Request.Host;
             return Challenge(new AuthenticationProperties()
             {
                 //RedirectUri = redirectUrl
@@ -40,7 +42,7 @@ namespace AzureAD.Controllers
         public IActionResult SignOut()
         {
             var scheme = OpenIdConnectDefaults.AuthenticationScheme;
-            return SignOut(new AuthenticationProperties(), CookieAuthenticationDefaults.AuthenticationScheme, scheme);
+            return SignOut(new AuthenticationProperties(), CookieAuthenticationDefaults.AuthenticationScheme, scheme); 
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
