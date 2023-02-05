@@ -35,7 +35,7 @@ namespace AzureAD.Controllers
             var redirectUrl = Url.ActionContext.HttpContext.Request.Scheme + "://" + Url.ActionContext.HttpContext.Request.Host;
             return Challenge(new AuthenticationProperties()
             {
-                //RedirectUri = redirectUrl
+                RedirectUri = redirectUrl
             }, scheme);
         }
 
