@@ -20,8 +20,11 @@ builder.Services.AddAuthentication(options =>
      options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;                                                                         //assign sign in scheme to cookies
      options.Authority  = "https://login.microsoftonline.com/21af2c97-fc02-46fd-84fb-323961b73470/v2.0"; //to find the value, go to endponnts page in azure, copy the metadata doc link, go to link, copy and paster in json parser to find "issuer"
      options.ClientId = "06091f65-ffc0-4dc1-b442-04be47b6ffe9";
-     options.ResponseType = "id_token";
+     //options.ResponseType = "id_token";
+     options.ResponseType = "code";
      options.SaveTokens = true; //tokens from aad will be saved in auth cookie header
+     //line below added after removing token id and adding secret key instead in AAD
+     options.ClientSecret = "d5i8Q~U~HmCWLGX~5aylc2dhbtdixzAqqlYQYbR9";
  }); 
                                                                
 
