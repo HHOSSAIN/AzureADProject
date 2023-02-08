@@ -4,6 +4,8 @@ using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient(); //we need to add httpclient factory in dependency injection in program.cs along with adding it in home controller
+
 // Add services to the container..application client id: 06091f65-ffc0-4dc1-b442-04be47b6ffe9
 //auth endpoint: https://login.microsoftonline.com/21af2c97-fc02-46fd-84fb-323961b73470/oauth2/v2.0/authorize
 builder.Services.AddControllersWithViews();
@@ -24,6 +26,7 @@ builder.Services.AddAuthentication(options =>
      options.ResponseType = "code";
      options.SaveTokens = true; //tokens from aad will be saved in auth cookie header
      //line below added after removing token id and adding secret key instead in AAD..we can find it certificate and secrets in azure
+     options.Scope.Add("api://f6b5f57a-2924-435e-93d3-9ef705e7d308/AdminAccess"); // taken from api permissions from azure ad api app registration
      options.ClientSecret = "d5i8Q~U~HmCWLGX~5aylc2dhbtdixzAqqlYQYbR9";
  }); 
                                                                
