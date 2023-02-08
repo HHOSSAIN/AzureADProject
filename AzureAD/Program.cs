@@ -25,9 +25,12 @@ builder.Services.AddAuthentication(options =>
      //options.ResponseType = "id_token";
      options.ResponseType = "code";
      options.SaveTokens = true; //tokens from aad will be saved in auth cookie header
+
+     options.Scope.Add("api://f6b5f57a-2924-435e-93d3-9ef705e7d308/AdminAccess"); // taken from api permissions from "azure ad" app registration. before adding this api
+                                                                                //permission in this main app, we had to expose this api in "azure ad api" app
+
      //line below added after removing token id and adding secret key instead in AAD..we can find it certificate and secrets in azure
-     options.Scope.Add("api://f6b5f57a-2924-435e-93d3-9ef705e7d308/AdminAccess"); // taken from api permissions from azure ad api app registration
-     options.ClientSecret = "d5i8Q~U~HmCWLGX~5aylc2dhbtdixzAqqlYQYbR9";
+     options.ClientSecret = "d5i8Q~U~HmCWLGX~5aylc2dhbtdixzAqqlYQYbR9"; //needed for apps to authenticate itself.
  }); 
                                                                
 

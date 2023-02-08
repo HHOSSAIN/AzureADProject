@@ -14,7 +14,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             options.Authority = "https://login.microsoftonline.com/21af2c97-fc02-46fd-84fb-323961b73470/v2.0"; //copied from web client program.cs
             options.Audience = "api://f6b5f57a-2924-435e-93d3-9ef705e7d308"; //it's the api id we generated in "expose an api" in azure.
             //options.TokenValidationParameters.ValidateIssuer= "https:/sts/windows.net/.....";
-            options.TokenValidationParameters.ValidateIssuer = false;
+            //options.TokenValidationParameters.ValidateIssuer = false;
         });
 
 builder.Services.AddEndpointsApiExplorer();
